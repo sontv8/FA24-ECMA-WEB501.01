@@ -49,3 +49,30 @@ const showProduct = (data) => {
   }
 };
 showProduct(products);
+
+/*
+  B1: tìm input để lấy data
+  B2: tạo 1 object mới để lưu dữ liệu cần thêm
+  B3: thêm sự kiện submit cho form
+  B4: thêm dữ liệu vào mảng
+*/
+
+const addForm = document.querySelector("#add-form");
+const addProduct = (e) => {
+  e.preventDefault();
+  const productName = document.querySelector("#product-name");
+  const productPrice = document.querySelector("#product-price");
+  const productImage = document.querySelector("#product-image");
+
+  const newProduct = {
+    id: products.length + 1,
+    name: productName.value,
+    price: productPrice.value,
+    image: productImage.value,
+  };
+
+  products.push(newProduct);
+  showProduct(products);
+};
+
+addForm.addEventListener("submit", addProduct);
