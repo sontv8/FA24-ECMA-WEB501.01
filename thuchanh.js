@@ -24,15 +24,28 @@ const showProduct = (data) => {
   if (!tbody) return console.log("Khong tim thay tbody");
   if (!data) return console.log("Khong tim thay data");
 
+  tbody.innerHTML = "";
   for (let product of data) {
     tbody.innerHTML += `
         <tr>
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td><img src="${product.image}" alt="" /></td>
-            <td><button>Xoa</button></td>
+            <td><button class="btn-delete" data-id=${product.id}>Xoa</button></td>
         </tr>
     `;
   }
+
+  const btns = document.querySelectorAll(".btn-delete");
+  for (let btn of btns) {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      const newData = products.filter((item) => {
+        return item.id != id;
+      });
+
+      showProduct(newData);
+    });
+  }
 };
-showProduct();
+showProduct(products);
