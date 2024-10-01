@@ -6,30 +6,59 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" id="add-form">
-      <div class="form-group">
-        <input type="text" placeholder="Tên sản phẩm" id="product-name" />
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Giá sản phẩm" id="product-price" />
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Ảnh sản phẩm" id="product-image" />
-      </div>
-      <button>Add Product</button>
-    </form>
-    <h1>Danh sách sản phẩm</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Image</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <script src="thuchanh.js"></script>
+    <script>
+      // function useState(initialState) {
+      //   let state = initialState;
+      //   function getState() {
+      //     return state;
+      //   }
+      //   function setState(newValue) {
+      //     state = newValue;
+      //   }
+      //   return [getState, setState];
+      // }
+
+      // console.log(useState(0));
+
+      // const [count, setCount] = useState(0);
+      // // [0: getState()]
+      // // console.log(index());
+      // setIndex(100);
+      // console.log(index());
+
+      /*
+      2. Destructuring Array
+      3. Destructuring Object
+      4. Spread Operator
+      5. Rest Params
+      */
+      const myNumber = [1, 2, 3];
+      const [a, , c] = myNumber;
+      console.log(a, c);
+
+      const myInfo = {
+        id: 1,
+        name: "sontv",
+        age: 20,
+      };
+      const { id, name, age } = myInfo;
+      console.log(id, name, age);
+
+      const fruits = ["apple", "banana", "orange"];
+      const vegetables = ["cabbage", "carrot", "tomato"];
+
+      // const food = fruits.concat(vegetables);
+      // spread operator ...
+      const food = [...fruits, ...vegetables];
+      console.log(food);
+      // rest parameter ...
+
+      function sum(...rest) {
+        console.log(rest);
+
+        // return a, b, c;
+      }
+      sum(1, 2, 3);
+    </script>
   </body>
 </html>
