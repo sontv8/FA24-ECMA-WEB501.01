@@ -26,20 +26,49 @@ const productList = [
 
 function App() {
   const [products, setProducts] = useState(productList);
+  const [product, setProduct] = useState({});
 
   const onHandleRemove = (id) => {
-    const newData = products.filter((product) => {
-      // console.log(product);
-      // console.log(id);
-
-      return product.id != id;
-    });
-    setProducts(newData);
+    if (confirm("Bạn có chắc chắn muốn xoá sản phẩm này không?")) {
+      const newData = products.filter((product) => {
+        return product.id != id;
+      });
+      setProducts(newData);
+    }
   };
 
+  const onHandleChange = (e) => {
+    // console.log(e.target.name);
+    // console.log(e.target.value);
+    const { name, value } = e.target;
+
+    setProduct({ ...product, [name]: value });
+    // computed property name
+  };
+
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+    setProducts([...products, { ...product, id: "4" }]);
+  };
   return (
     // JSX
     <>
+      {JSON.stringify(product)}
+      <form action="" onSubmit={onHandleSubmit}>
+        <div className="form-group">
+          <label htmlFor="">Tên sản phẩm</label>
+          <input type="text" name="name" onInput={onHandleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="">Giá sản phẩm</label>
+          <input type="text" name="price" onInput={onHandleChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="">Ảnh sản phẩm</label>
+          <input type="text" name="imageUrl" onInput={onHandleChange} />
+        </div>
+        <button>Thêm mới</button>
+      </form>
       <h1>Danh sách sản phẩm</h1>
       {products.map((product) => (
         <div key={product.id}>
@@ -65,5 +94,11 @@ Xoá sản phẩm:
   B2: khi bắt sự kiện onClick thì gọi ra hàm xoá sản phẩm
   B3: thực hiện tạo ra mảng mới không bao gồm sản phẩm đã xoá
   B4: set lại dữ liệu cho products để hiển thị lại danh sách sản phẩm
+
+Thêm sản phẩm:
+  B1: lấy dữ liệu nhập vào input
+  B2: tạo 1 state để lưu dữ liệu lấy được khi nhập
+  B3: submit form
+  B4: render lại
 */
 export default App;
