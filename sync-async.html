@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            đồng bộ - synchronous
+            bất đồng bộ - asynchronous
+            xử lý bất đồng bộ
+        */
+      //   const data = [1, 2, 3, 4];
+      //   console.log("Hello");
+      //   setTimeout(() => {
+      //     const newData = [...data];
+      //   }, 3000);
+      //   console.log(newData);
+
+      //   const myPromise = new Promise((resolve, reject) => {
+      //     let flag = true;
+      //     if (flag) {
+      //       resolve([1, 2]);
+      //     } else {
+      //       reject("Error");
+      //     }
+      //   });
+      //   myPromise
+      //     .then((data) => {
+      //       return data.map((item) => item * 2);
+      //     })
+      //     .then((data2) => {
+      //       console.log("Du lieu sau khi xu ly:", data2);
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+
+      //   const data = [1, 2, 3, 4];
+      //   console.log("Hello");
+      //   const myPromise = new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       const newData = [...data];
+      //       resolve(newData);
+      //     }, 3000);
+      //   });
+
+      //   myPromise
+      //     .then((myData) => {
+      //       console.log(myData);
+      //     })
+      //     .then()
+      //     .then()
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+
+      console.log(fetch("http://localhost:3000/products"));
+    </script>
+  </body>
+</html>
