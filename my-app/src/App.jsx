@@ -1,39 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
 
-const productList = [
-  {
-    id: "1",
-    name: "Product 1",
-    price: 100,
-    imageUrl: "https://picsum.photos/200/120",
-  },
-  {
-    id: "2",
-    name: "Product 2",
-    price: 100,
-    imageUrl: "https://picsum.photos/200/120",
-  },
-  {
-    id: "3",
-    name: "Product 3",
-    price: 100,
-    imageUrl: "https://picsum.photos/200/120",
-  },
-];
-
 function App() {
-  const [products, setProducts] = useState(productList);
+  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
 
+  useEffect(() => {
+    fetch("http://localhost:3000/products", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.log(error));
+  }, []);
   const onHandleRemove = (id) => {
     if (confirm("Bạn có chắc chắn muốn xoá sản phẩm này không?")) {
-      const newData = products.filter((product) => {
-        return product.id != id;
+      fetch(`http://localhost:3000/products/${id}`, {
+        method: "DELETE",
+      }).then(() => {
+        const newData = products.filter((product) => {
+          return product.id != id;
+        });
+        setProducts(newData);
       });
-      setProducts(newData);
     }
   };
 
