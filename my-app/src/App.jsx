@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Dashboard from "./pages/Dashboard";
+import ProductManagement from "./pages/ProductManagement";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [product, setProduct] = useState({});
+  // const [product, setProduct] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:3000/products", {
@@ -26,23 +29,23 @@ function App() {
     }
   };
 
-  const onHandleChange = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-    const { name, value } = e.target;
+  // const onHandleChange = (e) => {
+  //   // console.log(e.target.name);
+  //   // console.log(e.target.value);
+  //   const { name, value } = e.target;
 
-    setProduct({ ...product, [name]: value });
-    // computed property name
-  };
+  //   setProduct({ ...product, [name]: value });
+  //   // computed property name
+  // };
 
-  const onHandleSubmit = (e) => {
-    e.preventDefault();
-    setProducts([...products, { ...product, id: "4" }]);
-  };
+  // const onHandleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setProducts([...products, { ...product, id: "4" }]);
+  // };
   return (
     // JSX
     <>
-      {JSON.stringify(product)}
+      {/* {JSON.stringify(product)}
       <form action="" onSubmit={onHandleSubmit}>
         <div className="form-group">
           <label htmlFor="">Tên sản phẩm</label>
@@ -58,20 +61,25 @@ function App() {
         </div>
         <button>Thêm mới</button>
       </form>
-      <h1>Danh sách sản phẩm</h1>
-      {products.map((product) => (
-        <div key={product.id}>
-          <h2>{product.name}</h2>
-          <p>{product.price}</p>
-          <img src={product.imageUrl} alt="" />
-          <div>
-            <button onClick={() => onHandleRemove(product.id)}>Delete</button>
-          </div>
-        </div>
-      ))}
+       */}
+      <Routes>
+        <Route path="/admin" element={<Dashboard />} />
+        <Route
+          path="/admin/products"
+          element={
+            <ProductManagement
+              products={products}
+              onHandleRemove={onHandleRemove}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 }
+
+export default App;
+
 /*
 Hiển thị danh sách sản phẩm:
   B1: lấy dữ liệu -> dữ liệu nhận được là 1 mảng sản phẩm
@@ -89,5 +97,9 @@ Thêm sản phẩm:
   B2: tạo 1 state để lưu dữ liệu lấy được khi nhập
   B3: submit form
   B4: render lại
+
+Router:
+  B1: cài đặt: npm i react-router-dom
+  B2: xây dựng đường dẫn cho từng page
+  B3: bọc component App ở main.jsx bằng component <BrowserRouter>
 */
-export default App;
