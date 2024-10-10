@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import ProductManagement from "./pages/ProductManagement";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   const [products, setProducts] = useState([]);
-  // const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/products", {
@@ -29,39 +32,33 @@ function App() {
     }
   };
 
-  // const onHandleChange = (e) => {
-  //   // console.log(e.target.name);
-  //   // console.log(e.target.value);
-  //   const { name, value } = e.target;
+  const onHandleChange = (e) => {
+    // console.log(e.target.name);
+    // console.log(e.target.value);
+    const { name, value } = e.target;
 
-  //   setProduct({ ...product, [name]: value });
-  //   // computed property name
-  // };
+    setProduct({ ...product, [name]: value });
+    // computed property name
+  };
 
-  // const onHandleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setProducts([...products, { ...product, id: "4" }]);
-  // };
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:3000/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then((newProduct) => {
+        setProducts([...products, newProduct]);
+        navigate("/admin/products");
+      });
+  };
   return (
     // JSX
     <>
-      {/* {JSON.stringify(product)}
-      <form action="" onSubmit={onHandleSubmit}>
-        <div className="form-group">
-          <label htmlFor="">Tên sản phẩm</label>
-          <input type="text" name="name" onInput={onHandleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="">Giá sản phẩm</label>
-          <input type="text" name="price" onInput={onHandleChange} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="">Ảnh sản phẩm</label>
-          <input type="text" name="imageUrl" onInput={onHandleChange} />
-        </div>
-        <button>Thêm mới</button>
-      </form>
-       */}
       <Routes>
         <Route path="/admin" element={<Dashboard />} />
         <Route
@@ -70,6 +67,15 @@ function App() {
             <ProductManagement
               products={products}
               onHandleRemove={onHandleRemove}
+            />
+          }
+        />
+        <Route
+          path="/admin/products/add"
+          element={
+            <AddProduct
+              onHandleChange={onHandleChange}
+              onHandleSubmit={onHandleSubmit}
             />
           }
         />

@@ -11,6 +11,30 @@
       "name": "Product 2",
       "price": 100,
       "imageUrl": "https://picsum.photos/200/120"
+    },
+    {
+      "id": "dc67",
+      "name": "New Product",
+      "price": "1111",
+      "imageUrl": "abcd"
+    },
+    {
+      "id": "32fe",
+      "name": "New Product 2",
+      "price": "2222",
+      "imageUrl": "https://cdn.kona-blue.com/upload/kona-blue_com/post/images/2024/01/16/145/alice-1.jpg"
+    },
+    {
+      "id": "15a7",
+      "name": "New Product 3",
+      "price": "33333",
+      "imageUrl": "https://lienquan.garena.vn/wp-content/uploads/2024/05/1225b2f111cbd467d25efe8a2c0e6f19659518c5d93871.jpg"
+    },
+    {
+      "id": "86af",
+      "name": "New Product 4",
+      "price": "4444",
+      "imageUrl": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Seraphine_3.jpg"
     }
   ]
 }
