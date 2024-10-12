@@ -41,6 +41,9 @@ const ProductManagement = ({ products, onHandleRemove }) => {
                 <Link to={`/admin/products/${product.id}`}>
                   <button>Details</button>
                 </Link>
+                <Link to={`/admin/products/${product.id}/update`}>
+                  <button>Update</button>
+                </Link>
               </td>
             </tr>
           ))}

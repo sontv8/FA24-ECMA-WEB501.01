@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import ProductManagement from "./pages/ProductManagement";
 import AddProduct from "./pages/AddProduct";
 import ProductDetail from "./pages/ProductDetail";
+import UpdateProduct from "./pages/UpdateProduct";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -57,6 +58,25 @@ function App() {
         navigate("/admin/products");
       });
   };
+
+  const onHandleUpdate = (product) => {
+    console.log("App: ", product);
+    fetch(`http://localhost:3000/products/${product.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const newData = products.map((item) => {
+          return item.id == data.id ? data : item;
+        });
+        setProducts(newData);
+        navigate("/admin/products");
+      });
+  };
   return (
     // JSX
     <>
@@ -83,6 +103,15 @@ function App() {
         <Route
           path="/admin/products/:id"
           element={<ProductDetail products={products} />}
+        />
+        <Route
+          path="/admin/products/:id/update"
+          element={
+            <UpdateProduct
+              products={products}
+              onHandleUpdate={onHandleUpdate}
+            />
+          }
         />
       </Routes>
     </>

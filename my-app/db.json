@@ -20,8 +20,8 @@
     },
     {
       "id": "32fe",
-      "name": "New Product 2",
-      "price": "2222",
+      "name": "New Product 2 update 2",
+      "price": "1111",
       "imageUrl": "https://cdn.kona-blue.com/upload/kona-blue_com/post/images/2024/01/16/145/alice-1.jpg"
     },
     {
@@ -32,9 +32,16 @@
     },
     {
       "id": "86af",
-      "name": "New Product 4",
-      "price": "4444",
-      "imageUrl": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Seraphine_3.jpg"
+      "name": "New Product 4 update 4",
+      "price": "555555",
+      "imageUrl": "https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/amily.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "sontv",
+      "password": "123456"
     }
   ]
 }
