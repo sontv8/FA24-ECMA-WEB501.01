@@ -4,6 +4,7 @@ import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import ProductManagement from "./pages/ProductManagement";
 import AddProduct from "./pages/AddProduct";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -78,6 +79,10 @@ function App() {
               onHandleSubmit={onHandleSubmit}
             />
           }
+        />
+        <Route
+          path="/admin/products/:id"
+          element={<ProductDetail products={products} />}
         />
       </Routes>
     </>
