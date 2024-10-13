@@ -6,10 +6,12 @@ import ProductManagement from "./pages/ProductManagement";
 import AddProduct from "./pages/AddProduct";
 import ProductDetail from "./pages/ProductDetail";
 import UpdateProduct from "./pages/UpdateProduct";
+import { productSchema } from "./schema/Product";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
+  const [errorList, setErrorList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -45,18 +47,22 @@ function App() {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
-      .then((response) => response.json())
-      .then((newProduct) => {
-        setProducts([...products, newProduct]);
-        navigate("/admin/products");
-      });
+
+    const { error } = productSchema.validate(product, { abortEarly: false });
+    setErrorList(error.details);
+
+    // fetch(`http://localhost:3000/products`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(product),
+    // })
+    //   .then((response) => response.json())
+    //   .then((newProduct) => {
+    //     setProducts([...products, newProduct]);
+    //     navigate("/admin/products");
+    //   });
   };
 
   const onHandleUpdate = (product) => {
@@ -97,6 +103,7 @@ function App() {
             <AddProduct
               onHandleChange={onHandleChange}
               onHandleSubmit={onHandleSubmit}
+              errors={errorList}
             />
           }
         />
