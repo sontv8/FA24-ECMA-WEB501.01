@@ -4,10 +4,10 @@ const AddProduct = ({ onHandleChange, onHandleSubmit, errors }) => {
     // console.log(item.context.key);
     // {name: "Ten san pham khong duoc de trong"}
 
-    return { [item.context.key]: item.message };
+    return { name: item.context.key, message: item.message };
   });
-  const [errorName, errorPrice, errorImageUrl] = errorsDetail;
-
+  // console.log(errorsDetail);
+  // const [errorName, errorPrice, errorImageUrl] = errorsDetail;
   return (
     <div>
       <h1>Thêm mới sản phẩm</h1>
@@ -15,17 +15,29 @@ const AddProduct = ({ onHandleChange, onHandleSubmit, errors }) => {
         <div className="form-group">
           <label htmlFor="">Tên sản phẩm</label>
           <input type="text" name="name" onInput={onHandleChange} />
-          <span style={{ color: "red" }}>{errorName?.name}</span>
+          <span style={{ color: "red" }}>
+            {errorsDetail.map((item) =>
+              item.name == "name" ? item.message : ""
+            )}
+          </span>
         </div>
         <div className="form-group">
           <label htmlFor="">Giá sản phẩm</label>
           <input type="text" name="price" onInput={onHandleChange} />
-          <span style={{ color: "red" }}>{errorPrice?.price}</span>
+          <span style={{ color: "red" }}>
+            {errorsDetail.map((item) =>
+              item.name == "price" ? item.message : ""
+            )}
+          </span>
         </div>
         <div className="form-group">
           <label htmlFor="">Ảnh sản phẩm</label>
           <input type="text" name="imageUrl" onInput={onHandleChange} />
-          <span style={{ color: "red" }}>{errorImageUrl?.imageUrl}</span>
+          <span style={{ color: "red" }}>
+            {errorsDetail.map((item) =>
+              item.name == "imageUrl" ? item.message : ""
+            )}
+          </span>
         </div>
         <button>Thêm mới</button>
       </form>
